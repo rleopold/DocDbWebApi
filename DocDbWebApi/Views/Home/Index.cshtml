@@ -1,0 +1,72 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html data-ng-app="DocDbWebApi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/app/bower_components/angular-loading-bar/src/loading-bar.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top" data-ng-controller="index as vm">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" data-ng-click="navbarExpanded = !navbarExpanded">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("DocumentDb with WebAPI", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse" data-collapsed="!navbarExpanded">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li data-ng-hide="!vm.authentication.isAuth"><a href="#">Welcome {{vm.authentication.userName}}</a></li>
+                    <!-- other menu items that are auth-based go here -->
+                    <li data-ng-hide="!vm.authentication.isAuth"><a href="#/people">People</a></li>
+                    <li data-ng-hide="!vm.authentication.isAuth"><a href="" data-ng-click="vm.logOut()">Logout</a></li>
+                    <li data-ng-hide="vm.authentication.isAuth"> <a href="#/login">Login</a></li>
+                    <li data-ng-hide="vm.authentication.isAuth"> <a href="#/signup">Sign Up</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        <div data-ng-view="">
+
+        </div>
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <!--angluar script-->
+    <script src="~/app/bower_components/angular/angular.min.js"></script>
+    <script src="~/app/bower_components/angular-loader/angular-loader.min.js"></script>
+    <script src="~/app/bower_components/angular-loading-bar/src/loading-bar.js"></script>
+    <script src="~/app/bower_components/angular-local-storage/angular-local-storage.min.js"></script>
+    <script src="~/app/bower_components/angular-route/angular-route.min.js"></script>
+    <!-- main app script -->
+    <script src="~/app/app.js"></script>
+    <!-- providers / services -->
+    <script src="~/app/providers/authInterceptorService.js"></script>
+    <script src="~/app/providers/authService.js"></script>
+    <script src="~/app/providers/peopleService.js"></script>
+    <!-- angular controllers / view models -->
+    <script src="~/app/controllers/home.js"></script>
+    <script src="~/app/controllers/index.js"></script>
+    <script src="~/app/controllers/login.js"></script>
+    <script src="~/app/controllers/signup.js"></script>
+    <script src="~/app/controllers/people.js"></script>
+</body>
+</html>

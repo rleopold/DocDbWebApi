@@ -1,0 +1,63 @@
+﻿<div class="row">
+    <section class="container col-md-4">
+        <form role="form">
+            <div class="form-group">
+                <label for="search">Search By Last Name</label>
+                <input type="text" class="form-control" id="search" placeholder="Enter Last Name" ng-model="vm.findLastName">
+            </div>
+            <button ng-click="vm.search(vm.findLastName)" class="btn btn-default">Submit</button>
+        </form>
+    </section>
+</div>
+<div class="row">
+    <section class="container col-8">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="p in vm.people">
+                    <td>{{p.FirstName}}</td>
+                    <td>{{p.LastName}} </td>
+                    <td><button class="glyphicon glyphicon-edit" ng-click="vm.update($index)"></button></td>
+                    <td><button class="glyphicon glyphicon-trash " ng-click="vm.delete($index)"></button></td>
+                </tr>
+            </tbody>
+            <tfoot ng-show="!showAdd">
+                <tr>
+                    <td><span class="glyphicon glyphicon-plus" ng-click="vm.clickAdd()"></span></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tfoot>
+        </table>
+    </section>
+</div>
+<div class="row">
+    <section class="container col-md-4">
+        <div class="panel panel-default" ng-show="vm.showAdd">
+            <div class="panel-heading">Create New Person</div>
+            <div class="panel-body">
+                <form role="form">
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input type="text" class="form-control" id="firstName" placeholder="Enter First Name" ng-model="vm.person.FirstName">
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" class="form-control" id="lastName" placeholder="Enter Last Name" ng-model="vm.person.LastName">
+                    </div>
+                    <button ng-click="vm.insertOrUpdate(vm.person)" class="btn btn-default">Submit</button>
+                    <button ng-click="vm.clickAdd()" class="btn btn-default">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </section>
+</div>

@@ -1,0 +1,9 @@
+﻿<form class="form-login" role="form">
+    <h2 class="form-login-heading">Login</h2>
+    <input type="text" class="form-control" placeholder="Username" data-ng-model="vm.loginData.userName" required autofocus>
+    <input type="password" class="form-control" placeholder="Password" data-ng-model="vm.loginData.password" required>
+    <button class="btn btn-lg btn-info btn-block" type="submit" data-ng-click="vm.login()">Login</button>
+    <div data-ng-hide="vm.message == ''" class="alert alert-danger">
+        {{vm.message}}
+    </div>
+</form>
