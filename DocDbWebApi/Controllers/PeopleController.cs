@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace DocDbWebApi.Controllers
 {
+    [Authorize]
     public class PeopleController : ApiController
     {
         private PersonRepository _repo;
