@@ -20,8 +20,15 @@ namespace DocDbWebApi.Data
         {
             _databaseId = database;
             _collectionId = collection;
-            ReadOrCreateDatabase().Wait();
-            ReadOrCreateCollection(_database.SelfLink).Wait();
+            Initilization = InitializeAsync();
+        }
+
+        public Task Initilization { get; private set; }
+
+        private async Task InitializeAsync()
+        {
+            await ReadOrCreateDatabase();
+            await ReadOrCreateCollection(_database.SelfLink);
         }
 
         protected static DocumentClient Client
